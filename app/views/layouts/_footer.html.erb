@@ -1,0 +1,13 @@
+<footer class="footer">
+  <small>
+<%= t "layouts.footer" %>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to t("layouts.About"), about_path %></li>
+      <li><%= link_to t("layouts.Contact"), contact_path %></li>
+      <li><%= link_to t("layouts.english"), locale: "en" %>
+      <li><%= link_to t("layouts.vietnam"), locale: "vi" %>
+    </ul>
+  </nav>
+</footer>

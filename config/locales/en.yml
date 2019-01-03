@@ -1,4 +1,30 @@
 en:
   hello: "Hello world"
-layout:
-  base_title: Framgia book reviewing
+  layouts:
+    titlebase: Framgia book reviewing
+    App: "Framgia Books"
+    english: "English"
+    vietnam: "VietNamese"
+    Contact: "Contact"
+    News: "News"
+    Home: "Home"
+    Login: "Log in"
+    Help: "Help"
+    Signupnow: "Sign up now"
+    Signup: "Sign up"
+    account: "Account"
+    users: "Users"
+    profile: "Profile"
+    settings: "Settings"
+    logout: "Log out"
+    footer: "Framgia"
+  static_pages:
+    about:
+      title: "About"
+      instruction: "This is framgia book reviewing system."
+    contact:
+      instruction: "Contact the Framgia about the book reviewing system at the"
+      page: "contact page"
+      title: "Contact"
+    home:
+      title: "Home"
