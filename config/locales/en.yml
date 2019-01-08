@@ -50,6 +50,12 @@ en:
       login: "LOG IN"
       remember: "Remember me on this computer."
   users:
+    index:
+      title: Users List
+
+    edit:
+      title: Update information
+      update: UPDATE
     new:
       create: "Create my account"
       title: "Sign up"
