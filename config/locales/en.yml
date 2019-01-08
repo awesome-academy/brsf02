@@ -28,3 +28,47 @@ en:
       title: "Contact"
     home:
       title: "Home"
+  model:
+    user:
+      name: "Name"
+      email: "Email"
+      password: "Password"
+      confirmation: "Confirm password"
+      followers: "Followers"
+      following: "Following"
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail address"
+        password: "Password"
+        name: "Name"
+  sessions:
+    new:
+      newuser: "New user?"
+      signupnow: "Sign up now!"
+      title: "Log in"
+      login: "LOG IN"
+      remember: "Remember me on this computer."
+  users:
+    new:
+      create: "Create my account"
+      title: "Sign up"
+  flash:
+    welcome: "Welcome to Framgia book reviewing system"
+    login_error: "Invalid email/pasword combination"
+    updated: "Profile updated"
+    deleted: "User deleted"
+    notlogin: "Please log in"
+    nouser: "User not found!"
+    delete_fail: "Failed to delete user!"
+    not_active_user: "Account not activated. "
+    activation_mail: "Check your email for the activation link."
+    active_success: "Active user success!"
+    active_fail: "Active false! invalid link."
+    email_reset: "Email sent with password reset instructions"
+    wrong_email: "Email not found"
+    expire_reset: "Password reset has expired."
+    success_reset: "Password reset success."
+  shared:
+    error_messages:
+      error: Error

@@ -8,6 +8,8 @@ users:
     max_length: 255
   password:
     min_length: 6
+  remember:
+    chosen: "1"
 comments:
   content:
     max_length: 140

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save :downcase_email
   enum role: {user: 0, admin: 1}
   has_many :favorite_books, dependent: :destroy
   has_many :book_statuses, dependent: :destroy
@@ -14,7 +15,7 @@ class User < ApplicationRecord
     foreign_key: :followed_id, dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
 
-  before_save :downcase_email
+  attr_accessor :remember_token
 
   has_secure_password
   validates :password, presence: true,
@@ -28,6 +29,36 @@ class User < ApplicationRecord
   validates :email, presence: true,
   length: {maximum: Settings.users.name.max_length},
   format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+
+  # Returns the hash digest of the given string.
+  def self.digest string
+    if cost = ActiveModel::SecurePassword.min_cost
+      BCrypt::Engine::MIN_COST
+    else
+      BCrypt::Engine.cost
+    end
+    BCrypt::Password.create string, cost: cost
+  end
+
+  # Returns a random token.
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def remember
+    self.remember_token = User.new_token
+    update_attribute :remember_digest, User.digest(remember_token)
+  end
+
+  def forget
+    update_attribute :remember_digest, nil
+  end
+
+  def authenticated? attribute, token
+    digest = send "#{attribute}_digest"
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password? token
+  end
 
   private
 
