@@ -12,6 +12,9 @@ users:
     min_length: 6
   remember:
     chosen: "1"
+  avatar:
+    default: "/uploads/user/avatar/orig.png"
+    type: "image/jpeg,image/gif,image/png"
 comments:
   content:
     max_length: 140

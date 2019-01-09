@@ -1,1 +1,21 @@
-<%= @user.name %>, <%= @user.email %>
+<div class="container profile_header">
+  <div class="row">
+    <div class="col-md-6 img">
+     <figure><img src= <%= @user.avatar.url %> ></figure>
+    </div>
+    <div class="col-md-6 details">
+      <blockquote>
+        <h5><%= @user.name %></h5>
+        <small><cite title="Source Title"><%= @user.email %><i class="icon-map-marker"></i></cite></small>
+      </blockquote>
+      <button class="btn btn-success btn-sm">
+        <%= t ".follow" %>
+      </button>
+      <% if current_user.admin? && !current_user?(@user) %>
+        <%= link_to t(".delete_user"), @user, method: :delete,class: "btn btn-danger btn-sm",
+          data: {confirm: t(".confirm")} %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "feed" %>

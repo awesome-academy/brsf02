@@ -1,8 +1,13 @@
-<li>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to t(".delete"), user, method: :delete,
-    data: {confirm: t(".confirm")} %>
-  <% end %>
-
-</li>
+<div class="our-webcoderskull">
+  <li class="col-12 col-md-6 col-lg-2 ">
+    <div class="cnt-box cnt-block equal-hight"  >
+      <img src= <%= user.avatar.url %>
+        class="img-responsive" >
+      <p><%= link_to user.name, user %></p>
+      <% if current_user.admin? && !current_user?(user) %>
+        <%= link_to t(".delete"), user, method: :delete,
+          data: {confirm: t(".confirm")}, class: "btn btn-sm btn-danger" %>
+      <% end %>
+    </div>
+  </li>
+</div>

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="col-sm-12">
+    <div class="panel panel-white post panel-shadow">
+      <div class="post-heading">
+        <div class="pull-left image">
+          <img src= <%= @user.avatar.url %>
+          class="img-circle avatar" alt="user profile image">
+        </div>
+        <div class="pull-left meta">
+          <div class="title h5">
+            <a href="#"><b><%= @user.name %></b></a>
+            <%= t ".made_a_post" %>
+          </div>
+          <h6 class="text-muted time"><%= t ".time" %></h6>
+        </div>
+      </div>
+      <div class="post-description">
+        <p><%= t ".content" %></p>
+        <div class="stats">
+          <a href="#" class="btn btn-default stat-item">
+            <i class="fa fa-thumbs-up icon"></i><%= t ".likecount" %>
+          </a>
+          <a href="#" class="btn btn-default stat-item">
+            <i class="fa fa-share icon"></i><%= t ".commentcount" %>
+          </a>
+        </div>
+      </div>
+      <div class="post-footer">
+        <div class="input-group">
+          <input class="form-control" placeholder="Add a comment" type="text">
+          <span class="input-group-addon">
+            <a href="#"><i class="fa fa-edit"></i></a>
+          </span>
+        </div>
+        <ul class="comments-list">
+          <li class="comment">
+            <a class="pull-left" href="#">
+              <img class="avatar" src= <%= @user.avatar.url %> alt="avatar">
+            </a>
+            <div class="comment-body">
+              <div class="comment-heading">
+                <h4 class="user"><%= t ".name" %></h4>
+                <h5 class="time"><%= t ".time" %></h5>
+              </div>
+              <p><%= t ".comment" %></p>
+            </div>
+            <ul class="comments-list">
+              <li class="comment">
+                <a class="pull-left" href="#">
+                  <img class="avatar" src=<%= @user.avatar.url %> alt="avatar">
+                </a>
+                <div class="comment-body">
+                  <div class="comment-heading">
+                    <h4 class="user"><%= t ".name" %></h4>
+                    <h5 class="time"><%= t ".time" %></h5>
+                  </div>
+                  <p><%= t ".comment" %></p>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ class User < ApplicationRecord
     foreign_key: :followed_id, dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
   scope :newest, ->{order created_at: :desc}
+  mount_uploader :avatar, AvatarUploader
   attr_accessor :remember_token
 
   has_secure_password

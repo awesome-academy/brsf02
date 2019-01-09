@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, except: [:show, :new, :create]
-  before_action :correct_user, only: [:edit, :update]
   before_action :load_user, except: [:index, :new, :create]
+  before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
   def show; end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit :name, :email, :password,
-      :password_confirmation
+      :password_confirmation, :avatar
   end
 
   def logged_in_user
@@ -68,7 +68,9 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    redirect_to(root_path) unless current_user? @user
+    return if current_user == @user
+    redirect_to(root_path)
+    flash[:danger] = t "flash.wronguser"
   end
 
   def admin_user

@@ -13,5 +13,8 @@
   <%= f.label :password_confirmation, t("model.user.confirmation") %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
+  <%= f.label t("model.user.avatar") %>
+  <%= f.file_field :avatar, accept: Settings.users.avatar.type %>
+
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
