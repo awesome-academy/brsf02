@@ -1,0 +1,12 @@
+$(".book_<%= @book_status.book_id %>").find(".book_status").attr('status', '<%= @book_status.status %>');
+$(".book_<%= @book_status.book_id %>").find(".book_status").html('<%= @book_status.status %>');
+<% if @book_status.reading?
+    status = "as_read"
+  elsif @book_status.as_read?
+    status = "reading"
+  end %>
+$(".status-form-<%= @book_status.book_id %>").html("<%= escape_javascript(
+render("books/status_button_form", {book: @book_status.book, status: status}) +
+        (render "books/unread_form", book_status: @book_status, status: "unread")
+) %>");
+$(".status-<%= @book_status.book_id %>").html("<span class='badge <%= @book_status.status %>'> <%= @book_status.status %></span>");

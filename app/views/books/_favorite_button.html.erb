@@ -1,0 +1,6 @@
+<%= form_for(current_user.book_favorites.new, remote: true) do |f| %>
+   <div><%= hidden_field_tag :book_id, book.id %></div>
+  <%= button_tag(:submit, {class: "btn btn-link favorite favorite-unchecked"}) do %>
+    <i class='glyphicon glyphicon-heart'></i>
+  <% end %>
+<% end %>

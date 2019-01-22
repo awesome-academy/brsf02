@@ -1,0 +1,1 @@
+$("#like-<%= @activity.id %>").html("<%= escape_javascript(render('likes/like', activity: @activity)) %>");

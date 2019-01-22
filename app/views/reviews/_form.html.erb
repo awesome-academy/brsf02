@@ -1,0 +1,9 @@
+<%= form_for(@review) do |f| %>
+  <%= f.label t("model.review.title") %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.label t("model.review.content") %>
+  <%= f.text_area :content, class: "form-control" %>
+  <%= f.label t("model.review.rating") %>
+  <%= f.number_field(:stars, in: 1.0..5.0, step: 1, class: "form-control") %>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

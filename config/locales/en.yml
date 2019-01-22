@@ -1,8 +1,13 @@
 en:
+  dictionary:
+    by: By
+  errors:
+    picture_size: "should be less than 5MB"
   hello: "Hello world"
   layouts:
-    titlebase: Framgia book reviewing
-    App: "Framgia Books"
+    users: Users
+    reviews: Reviews
+    titlebase: Framgia book review system
     english: "English"
     vietnam: "VietNamese"
     Contact: "Contact"
@@ -18,6 +23,7 @@ en:
     settings: "Settings"
     logout: "Log out"
     footer: "Framgia"
+    books: Books
   static_pages:
     about:
       title: "About"
@@ -28,6 +34,7 @@ en:
       title: "Contact"
     home:
       title: "Home"
+      application: FRAMGIA Book reviewing system
   model:
     user:
       name: "Name"
@@ -36,6 +43,28 @@ en:
       confirmation: "Confirm password"
       followers: "Followers"
       following: "Following"
+      follow: Follow
+      unfollow: Unfollow
+      avatar: Avatar
+    book:
+      id: Id
+      page: "Pages"
+      title: "Title"
+      author: "Author"
+      category: "Category"
+      publish_date: "Publish date"
+      pages_count: "Pages"
+      cover: Cover
+    review:
+      review: Review
+      rating: Rate
+      title: Title
+      content: Content
+    category:
+      name: Name
+    comment:
+      comment: comment
+      content: Content
   activerecord:
     attributes:
       user:
@@ -50,9 +79,12 @@ en:
       login: "LOG IN"
       remember: "Remember me on this computer."
   users:
+    show:
+      no_favorite_books: No favorite books
+      previous: Previous
+      next: Next
     index:
-      title: Users List
-
+      title: USERS LIST
     edit:
       title: Update information
       update: UPDATE
@@ -75,6 +107,120 @@ en:
     wrong_email: "Email not found"
     expire_reset: "Password reset has expired."
     success_reset: "Password reset success."
+    deleted: "Delete succeeded"
+    created: "Create succeeded"
+    updated: "Update succeeded"
+    error: "Something was wrong, please try again!"
+    nobook: "Book not found!"
+    nocategory: "Category not found"
+    delete_fail: "Failed to delete, please try again"
+    valid_comment: "Invalid comment content"
+    nocomment: "Comment not found, please try again"
   shared:
+    feed:
+      no_activities: No activities, create some!
     error_messages:
       error: Error
+  admin:
+    books:
+      book:
+        action: Action
+        edit: Edit
+        delete: Delete
+        confirm: "You sure?"
+      new:
+        title: Create book
+        create: Create
+      edit:
+        update: Update
+        title: Edit book
+    categories:
+      category:
+        edit: Edit
+        delete: "Delete"
+        confirm: "You sure?"
+      new:
+        create: "Create"
+        title: "New category"
+      index:
+        action: Action
+        create: "Create"
+        delete: "Delete"
+      edit:
+        title: Edit category
+        update: Update
+    users:
+      user:
+        delete: "Delete"
+        confirm: "You sure?"
+  books:
+    book:
+      write_review: Write a review
+    unread_form:
+      mark_as_unread: Mark as unread
+    search_form:
+      title_holder: Book title content..
+      author_holder: Book by..
+      reading: Reading book
+      as_read: As read book
+      unread: Unread book
+      by_status: By status
+      search: Search
+    index:
+      title: Book List
+    book_status_form:
+      mark_as_read: Mark as read
+      mark_as_unread: Mark as unread
+      mark_as_reading: Mark as reading
+    review_form:
+      title_holder: Insert review's title...
+      content_holder: Insert content...
+      submit: Submit
+    status_button_form:
+      mark_as_as_read: Mark as read
+      mark_as_unread: Mark as unread
+      mark_as_reading: Mark as reading
+  reviews:
+    review:
+      reviewd: "Reviewed "
+      Rate: "Rate "
+    show:
+      leave_a_comment: Leave a comment
+      review: Review
+      book: "Book: "
+    edit:
+      title: Edit review
+      update: UPDATE
+    form:
+      rating: Rating
+  activities:
+    activity:
+      post:
+        review: "write a review for "
+        reading: "is reading "
+        as_read: "as read "
+        favorite: "add to favorite list "
+        follow: "follow "
+        followed: "followed by "
+    box:
+      like: like
+      comment: comment
+  comments:
+    edit_form:
+      delete: Delete comment
+      update: Update comment
+    comment:
+      edit_comment: Edit comment
+  likes:
+    like:
+      like: like
+    unlike:
+      like: like
+  admin_layout:
+    sidebar:
+      users: Manage users
+      categories: Manage categories
+      books: Manage books
+      new_book: Create new book
+      new_category: Create new category
+      list: List

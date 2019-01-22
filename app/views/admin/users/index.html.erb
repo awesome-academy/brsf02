@@ -1,0 +1,12 @@
+<table class="table table-striped custab">
+<thead>
+  <tr>
+    <th><%= t "model.user.id" %></th>
+    <th><%= t "model.user.name" %></th>
+    <th><%= t "model.user.email" %></th>
+    <th class="text-center"><%= t ".action" %></th>
+  </tr>
+</thead>
+  <%= render @users %>
+  <%= will_paginate %>
+</table>

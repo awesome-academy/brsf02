@@ -1,0 +1,27 @@
+<div class="col col-md-6">
+  <div class="well">
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object review-book-picture" src="<%= review.book.picture.url %>">
+      </a>
+      <div class="media-body">
+        <div class="review-index-title">
+          <h3 class="media-heading">
+            <a href="<%= review_path(review) %>"><%= review.title %></a>
+          </h3>
+          <p>
+            <%= t".reviewed" %>
+            <a href="<%= book_path(review.book) %>"><%= review.book.title %></a>
+          </p>
+        </div>
+        <div>
+          <a href="<%= user_path(review.user) %>">
+            <p><img src="<%= review.user.avatar.url %>" class="small-avatar"> <%= review.user.name %></p>
+          </a>
+        </div>
+        <p><i class="fa fa-calendar"></i> <%= review.created_at %></p>
+        <p><%= t".rate" %><%= review.stars %> <span class="fa fa-star"></span></p>
+      </div>
+    </div>
+  </div>
+</div>

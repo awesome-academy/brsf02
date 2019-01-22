@@ -1,0 +1,3 @@
+$("#comment-<%= @comment.id %>").find("#content-p").html("<%= @comment.content %>")
+$("#comment-<%= @comment.id %>").find("button[data-comment-id= '<%= @comment.id %>']").attr('data-content', '<%= @comment.content %>')
+$('#modal-edit-comment').modal('hide');

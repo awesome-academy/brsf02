@@ -1,0 +1,24 @@
+<div class="modal fade in" id="modal-edit-comment" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">X</span>
+        </button>
+        <h2 class="modal-title"><label class="label label-lg label-primary" ><%= t ".edit.comment" %></label>
+        </h2>
+      </div>
+      <div class="modal-body">
+        <%= form_tag "#",{method: :patch, class: "edit-comment-form", id: "modal-comment-form", remote: true} do %>
+          <%= text_field_tag "comment-content", "" , {class: "form-control", id: "modal_comment_content"} %>
+          <div class="center"><%= submit_tag t(".update"),
+            class: "btn btn-success btn-m comment_edit_function" %></div>
+        <% end %>
+        <%= form_tag "#",{method: :delete,id: "delete-comment-form", remote: true} do %>
+          <div class="center"><%= submit_tag t(".delete"),
+            class: "btn btn-danger comment_edit_function" %></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

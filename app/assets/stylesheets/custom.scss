@@ -9,12 +9,17 @@ $gray-medium-light: #eaeaea;
 $gray-medium-dark: #999;
 $gray-dark-medium: rgba(0,0,0,0.3);
 $gray-dark-dark: #333;
+$light-green: #19D719;
+$light-blue: #1876C9;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+  .media .media-body{
+    overflow: none !important;
+  }
 
 /* universal */
 body {
@@ -66,13 +71,7 @@ p {
 /* header */
 #logo {
   float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
+  height: 50px;
   &:hover {
     color: white;
     text-decoration: none;
@@ -150,7 +149,7 @@ input, textarea, select, .uneditable-input {
 }
 
 input {
-  height: auto !important;
+  height: auto;
 }
 #error_explanation {
   color: red;
@@ -221,26 +220,7 @@ ul{
    margin-bottom: 15px;
 }
 
-//profile header
-.profile_header{
-    padding:5%;
-}
 
-.profile_header .img{
-  text-align:center;
-}
-.profile_header img{
-     width:250px;
-   height:150px;
-}
-
-.profile_header .details{
-    border-left:3px solid $gray-light-medium;
-}
-.profile_header .details p{
-    font-size:15px;
-    font-weight:bold;
-}
 
 //feed
 
@@ -251,13 +231,24 @@ ul{
   border: 1px solid $gray-dark-medium;
 }
 
+.like_button{
+  i{
+    margin-right: 5px
+  }
+  float:left;
+  margin: 0px 10px;
+  .clicked{
+    background-color: #FF0000;
+  }
+}
+
 .post .post-heading {
-  height: 95px;
-  padding: 15px 15px;
+  height: 80px;
+  padding: 15px 15px 10px 15px;
 }
 .post .post-heading .avatar {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: block;
   margin-right: 15px;
 }
@@ -279,13 +270,13 @@ ul{
   height: auto;
 }
 .post .post-description {
-  padding: 15px;
+  padding: 0px 15px 15px 15px;
 }
 .post .post-description p {
   font-size: 14px;
 }
 .post .post-description .stats {
-  margin-top: 20px;
+  margin-top: 0px;
 }
 .post .post-description .stats .stat-item {
   display: inline-block;
@@ -337,4 +328,383 @@ ul{
 }
 .post .post-footer .comments-list .comment > .comments-list {
   margin-left: 50px;
+}
+
+//admin temple
+#admin_body{
+  padding-top: 0px;
+}
+.custab{
+    border: 1px solid $gray-medium-dark;
+    padding: 5px;
+    margin: 1% 0;
+    box-shadow: 3px 3px 2px $gray-medium-dark;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+
+// seach box for books
+.search-form {
+  box-shadow: 3px 3px 2px $gray-medium-dark;
+  border: 2px solid #ddd;
+  border-radius: 2px;
+  padding: 16px;
+  height: auto;
+  margin-bottom:10px;
+}
+
+.search-form-submit {
+  color: white;
+  width: 100px;
+}
+
+
+/* Book review */
+
+.reviews {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid $gray-light;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+}
+
+.rating-header {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+#btnrating {
+  padding-top: 0px;padding-bottom: 0px;
+}
+
+//review box
+  .modal-title{
+  font-size:1.6em;white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+
+  #review_title {
+    height: 35px;
+  }
+  #review_content {
+    height: 220px;
+  }
+  #submit-review{
+    width: 25%;
+  }
+
+//folow stat
+.follow_stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+#comment_content{
+  width: 92%;
+   display: inline-block;
+}
+.comment-form
+{
+  width:7%;
+  display: inline-block;
+}
+.comment_edit_function{
+  width: 40%;
+  margin-bottom: 5px;
+}
+
+
+
+
+/********************* Shopping Demo-6 **********************/
+.set-pad{
+  padding-bottom: 20px;
+}
+.product-grid6,.product-grid6 .product-image6{overflow:hidden}
+.product-grid6{font-family:'Open Sans',sans-serif;text-align:center;position:relative;transition:all .5s ease 0s}
+.product-grid6:hover{box-shadow:0 0 10px $gray-dark-dark}
+.product-grid6 .product-image6 a{display:block}
+.product-grid6 .product-image6 img{width:100%;height:250px;transition:all .5s ease 0s}
+.product-grid6:hover .product-image6 img{transform:scale(1.1);opacity:0.5;}
+.product-grid6 .img-overlay i{width:100%;height:auto;transition:all .5s ease 0s}
+.product-grid6:hover .product-image6 .img-overlay i{transform:scale(1.1)}
+.product-grid6 .product-content{padding:12px 12px 15px;transition:all .5s ease 0s;height: 93px}
+.product-grid6:hover .product-content{opacity:0}
+.product-grid6:hover .img-overlay{opacity: 1}
+.product-grid6 .title{font-size:15px;margin:0 0 10px;transition:all .3s ease 0s;height:30px ;
+    overflow: hidden;
+    text-overflow: ellipsis;}
+.product-grid6 .title {font-weight:600;}
+.product-grid6 .price{font-size:15px;color:$light-blue}
+.product-grid6 .social{background-color: white;width:100%;padding:0;margin:0;list-style:none;opacity:0;transform:translateX(-50%);position:absolute;bottom:-50%;left:50%;z-index:1;transition:all .5s ease 0s}
+.product-grid6:hover .social{opacity:1;bottom:20px}
+.product-grid6 .social li{display:inline-block}
+.product-grid6 .social li .btna{color: $gray-dark-dark;font-size:20px;line-height:25px;text-align:center;height:45px;width:45px;margin:0 7px;border:1px solid $gray-dark-medium;border-radius:50px;display:block;position:relative;transition:all .3s ease-in-out}
+.product-grid6 .social li .btna:hover{color:white;background-color:$light-blue;width:60px}
+
+@media only screen and (max-width:990px){.product-grid6{margin-bottom:30px}
+}
+.product-grid6 .img-wrapper {
+  position: relative;
+  background-color: black;
+ }
+
+.product-grid6 .img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.product-grid6 .img-overlay {
+  i{
+    font-size: 30px
+  }
+  position: absolute;
+}
+.product-grid6 .top-left-overlay{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: left;
+  }
+  .product-grid6 .bottom-overlay{
+    opacity: 0.7;
+    top: 80%;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+.product-grid6 .center-overlay{
+  transition:all .5s ease-in-out;
+  opacity:0;
+  top: 30%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  :first-child{
+    margin-bottom: 5px
+  }
+}
+.product-grid6 .reading{
+  background-color: $light-blue;
+    }
+.product-grid6 .as_read{
+  background-color: $light-green;
+    }
+.product-grid6 .favorite-checked{
+  text-shadow: 1 1 10px white;
+  color: red;
+  opacity: 0.8;
+}
+
+.product-grid6 .favorite-checked:hover{
+  color: red;
+  text-shadow: 1 1 10px white;
+  opacity: 0.7;
+}
+
+.product-grid6 .favorite{
+  text-shadow: 1 1 10px black;
+  color: $gray-light;
+  opacity: 0.7;
+}
+
+.product-grid6 .favorite:hover{
+  color: red;
+  opacity: 0.5;
+}
+.product-grid6 .favorite-checked:hover{
+  color: red;
+
+}
+
+.product-grid6 .img-overlay:before {
+  display: block;
+}
+[data-tip] {
+  position:relative;
+
+}
+
+[data-tip]:after {
+  left: 50%;
+  transform: translateX(-50%);
+  display:none;
+  content:attr(data-tip);
+  position:absolute;
+  bottom:50px;
+  padding:5px 5px;
+  background: $gray-darker;
+  color: white;
+  z-index:9;
+  font-size: 1em;
+  height:30px;
+  line-height:18px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space:nowrap;
+  word-wrap:normal;
+}
+[data-tip]:hover:before,
+[data-tip]:hover:after {
+  display:block;
+}
+
+#showpage{
+
+  /*==============================*/
+  /*====== siderbar user profile =====*/
+  /*==============================*/
+  .nav>li>a.userdd {
+      padding: 5px 15px
+  }
+  .userprofile {
+      width: 100%;
+    float: left;
+    clear: both;
+    margin: 40px auto
+  }
+  .userprofile .userpic {
+    height: 100px;
+    width: 100px;
+    clear: both;
+    margin: 0 auto;
+    display: block;
+    border-radius: 100%;
+    box-shadow: 0px 3px 10px 0 $gray-light;
+    -moz-box-shadow: 0px 3px 10px 0 $gray-light;
+    -webkit-box-shadow: 0px 3px 10px 0 $gray-light;
+    -ms-box-shadow: 0px 3px 10px 0 $gray-light;
+    position: relative;
+  }
+  .userprofile .userpic .userpicimg {
+    height: auto;
+    width: 100%;
+    border-radius: 100%;
+  }
+  .username {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000000;
+    margin-top: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  /*==============================*/
+  /*====== Social Profile css =====*/
+  /*==============================*/
+  .countlist h3 {
+    margin: 0;
+    font-weight: 400;
+    line-height: 28px;
+  }
+  .countlist {
+    text-transform: uppercase
+  }
+  .countlist li {
+    padding: 15px 30px 15px 0;
+    font-size: 14px;
+    text-align: left;
+  }
+  .countlist li small {
+    font-size: 12px;
+    margin: 0
+  }
+  .followbtn {
+    float: right;
+    margin: 22px;
+  }
+  .userprofile.social {
+    background: url(../uploads/user/banner.jpg) no-repeat top center;
+    background-size: 100%;
+    padding: 50px 0;
+    margin: 0
+  }
+  .userprofile.social .username {
+    color: white;
+  }
+  .userprofile.social .username+p {
+    color: white;
+    opacity: 0.8
+  }
+
+}
+
+#follow_form{
+  text-align: center;
+  .btn{
+    width: 80px;
+  }
+}
+
+
+.small-avatar{
+    width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+.review-index-title{
+  color: black;
+  height: 140px;
+  overflow: hidden;
+}
+.review-book-picture{
+  height: 270px;
+  width: 200px;
+}
+
+
+//slider user sho
+.favorite_label{
+  font-size: 20px;
+}
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    height: 400px;
+    background-color: black;
+
 }

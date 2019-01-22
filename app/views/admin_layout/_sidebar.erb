@@ -1,0 +1,54 @@
+<div class="col col-md-3">
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#users_collapse">
+          <h4 class="panel-title"><%= t ".users" %></h4>
+        </a>
+      </div>
+      <div id="users_collapse" class="panel-collapse collapse">
+        <ul class="list-group">
+          <a href= <%= admin_users_path %>
+            <li class="list-group-item"><span class="badge"><%= User.count %></span><%= t ".list" %></li>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#categories_collapse">
+          <h4 class="panel-title"><%= t ".categories" %></h4>
+        </a>
+      </div>
+      <div id="categories_collapse" class="panel-collapse collapse in">
+        <ul class="list-group">
+          <a href= <%= admin_categories_path %>
+            <li class="list-group-item"><span class="badge"><%= Category.count %></span><%= t ".list" %></li>
+          </a>
+          <a href= <%= new_admin_category_path %>
+            <li class="list-group-item"><%= t ".new_category" %></li>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#books_collapse">
+          <h4 class="panel-title"><%= t ".books" %></h4>
+        </a>
+      </div>
+      <div id="books_collapse" class="panel-collapse collapse in">
+        <ul class="list-group">
+          <a href= <%= admin_books_path %>
+            <li class="list-group-item"><span class="badge"><%= Book.count %></span><%= t ".list" %></li>
+          </a>
+          <a href= <%= new_admin_book_path %>
+            <li class="list-group-item"><%= t ".new_book" %></li>
+          </a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+

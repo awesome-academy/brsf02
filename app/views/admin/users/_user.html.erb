@@ -1,0 +1,11 @@
+<tr>
+  <td><%= user.id %></td>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td class="text-center">
+    <% if user.id != 1 %>
+      <%= link_to t(".delete"), admin_user_path(user), method: :delete,
+       data: {confirm: t(".confirm")}, class: "btn btn-xs btn-danger" %>
+    <% end %>
+  </td>
+</tr>

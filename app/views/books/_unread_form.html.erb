@@ -1,0 +1,8 @@
+<li>
+  <%= form_for(@book_status,html: { method: :delete,"data-tip"=>t(".mark_as_#{status}")},
+  remote: true) do |f| %>
+    <%= button_tag(:submit, {class: "btna"}) do %>
+      <i class="fa fa-times-circle "></i>
+    <% end %>
+  <% end %>
+</li>

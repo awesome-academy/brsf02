@@ -1,11 +1,9 @@
 <% provide :title, t(".title") %>
-<%= will_paginate %>
 <div class="container">
   <h1><%= t ".title" %></h1>
   <ul>
   <%= render @users %>
-
   </ul>
+  <%= will_paginate %>
 </div>
 
-<%= will_paginate %>

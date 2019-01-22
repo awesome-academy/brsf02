@@ -1,0 +1,43 @@
+<%
+  load_book_status(book)
+%>
+<div class="col-md-3 col-sm-6 set-pad">
+  <div class="product-grid6">
+    <div class="product-image6 img-wrapper">
+      <a href="#">
+          <img class="pic-1" src="<%= book.picture.url %>">
+      </a>
+      <div class="img-overlay favorite-<%= book.id %> top-left-overlay">
+        <% book_favorite = @book_favorites.select{|favorite| favorite.book_id == book.id}.first %>
+        <% if book_favorite.present? %>
+          <%= render("unfavorite_button", {book: book, book_favorite: book_favorite}) %>
+        <% else %>
+          <%= render("favorite_button",{book: book}) %>
+        <% end %>
+      </div>
+      <div class="img-overlay review-<%= book.id %> center-overlay ">
+          <div><button class="btn btn-success" id="review" onclick="review(this)" data-book-id= "<%= book.id %>" data-book-title = "<%= book.title %>" data-toggle="modal" data-target="#myModal"><%= t ".write_review"%></button></div>
+          <a href="<%= book_path(book) %>"><button class="btn btn-primary btn-sm" href="/users">View More</button></a>
+      </div>
+      <div class="img-overlay bottom-overlay status-<%= book.id %> ">
+        <span class="badge <%= @book_status.status %>"><%= @book_status.status %></span>
+      </div>
+    </div>
+    <div class="product-content">
+      <h3 class="title"><%= book.title %></h3>
+      <div class="price"><%= book.author %></div>
+    </div>
+    <ul class="social status-form-<%= book.id %>" >
+      <%= if @book_status.reading?
+        render("unread_form", {book: book, status: "unread"}) +
+        render("status_button_form", {book: book, status: "as_read"})
+      elsif @book_status.as_read?
+        render("unread_form", {book: book, status: "unread"})+
+        render("status_button_form", {book: book, status: "reading"})
+      else
+        render("status_button_form", {book: book, status: "reading"}) +
+        (render "status_button_form", {book: book, status: "as_read"})
+      end %>
+    </ul>
+  </div>
+</div>

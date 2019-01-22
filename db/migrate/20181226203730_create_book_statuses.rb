@@ -8,5 +8,6 @@ class CreateBookStatuses < ActiveRecord::Migration[5.1]
     end
     add_index :book_statuses, [:user_id, :created_at]
     add_index :book_statuses, [:book_id, :created_at]
+    add_index :book_statuses, [:book_id, :user_id], unique: true
   end
 end

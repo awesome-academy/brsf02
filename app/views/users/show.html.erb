@@ -1,21 +1,69 @@
-<div class="container profile_header">
+<div class="container" id="showpage">
   <div class="row">
-    <div class="col-md-6 img">
-     <figure><img src= <%= @user.avatar.url %> ></figure>
+    <div class="col-md-12 text-center ">
+      <div class="panel panel-default">
+        <div class="userprofile social ">
+          <div class="userpic"> <img src="<%= @user.avatar.url %>" alt="" class="userpicimg"> </div>
+          <h3 class="username"><%= @user.name %></h3>
+          <p><%= @user.email %></p>
+          <div class="socials tex-center">
+            <%= render "follow_form" %>
+          </div>
+        </div>
+        <div class="col-md-12 border-top border-bottom">
+          <ul class="nav nav-pills pull-left countlist" role="tablist">
+            <li role="presentation">
+              <h3><span id="followers"><%= @user.followers.count %></span><br>
+                <small><%= t "model.user.follower" %></small> </h3>
+            </li>
+            <li role="presentation">
+              <h3><span id="following"><%= @user.following.count %></span><br>
+                <small><%= t "model.user.following" %></small> </h3>
+            </li>
+            <li role="presentation">
+              <h3><%= @user.reviews.count %><br>
+                <small><%= t "model.review.review" %></small> </h3>
+            </li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+      </div>
     </div>
-    <div class="col-md-6 details">
-      <blockquote>
-        <h5><%= @user.name %></h5>
-        <small><cite title="Source Title"><%= @user.email %><i class="icon-map-marker"></i></cite></small>
-      </blockquote>
-      <button class="btn btn-success btn-sm">
-        <%= t ".follow" %>
-      </button>
-      <% if current_user.admin? && !current_user?(@user) %>
-        <%= link_to t(".delete_user"), @user, method: :delete,class: "btn btn-danger btn-sm",
-          data: {confirm: t(".confirm")} %>
+    <!-- /.col-md-12 -->
+    <div class="col-md-4 col-sm-12 pull-right">
+      <div class="label label-primary col-md-12 favorite_label" ><%= t ".favorite_books" %></div>
+      <% if @favorite_books.any?  %>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <% @favorite_books.each do |book| %>
+            <div class="item <%= 'active' if book == @favorite_books.first %>">
+              <img src="<%= book.picture.url%>" alt="<%= book.title %>">
+              <div class="carousel-caption">
+                <h4><a href="<%= book_path(book) %>"><span class="label label-primary"><%= book.title %></span></a></h4>
+                <p class="label label-default"><%= book.author %></p>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only"><%= t ".previous" %></span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only"><%= t ".next" %></span>
+          </a>
+        </div>
+      <% else %>
+        <p class="alert alert-info text-center"><%= t ".no_favorite_books" %></p>
       <% end %>
+    </div>
+    <div class="col-md-8 col-sm-12 pull-left posttimeline">
+      <%= render "shared/feed" %>
     </div>
   </div>
 </div>
-<%= render "feed" %>
+<%= render "comments/edit_form" %>

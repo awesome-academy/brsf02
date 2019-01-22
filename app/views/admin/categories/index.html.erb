@@ -1,0 +1,11 @@
+<table class="table table-striped custab">
+  <thead>
+      <tr>
+          <th><%= t "model.categories.id" %></th>
+          <th><%= t "model.categories.name" %></th>
+          <th class="text-center"><%= t ".action" %></th>
+      </tr>
+  </thead>
+  <%= render @categories %>
+  <%= will_paginate %>
+</table>

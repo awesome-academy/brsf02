@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190109010730) do
+ActiveRecord::Schema.define(version: 20190118221835) do
 
   create_table "activities", force: :cascade do |t|
     t.integer "user_id"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20190109010730) do
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
+  create_table "book_favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "book_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id", "created_at"], name: "index_book_favorites_on_book_id_and_created_at"
+    t.index ["book_id"], name: "index_book_favorites_on_book_id"
+    t.index ["user_id", "created_at"], name: "index_book_favorites_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_book_favorites_on_user_id"
+  end
+
   create_table "book_statuses", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
@@ -29,6 +41,7 @@ ActiveRecord::Schema.define(version: 20190109010730) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id", "created_at"], name: "index_book_statuses_on_book_id_and_created_at"
+    t.index ["book_id", "user_id"], name: "index_book_statuses_on_book_id_and_user_id", unique: true
     t.index ["book_id"], name: "index_book_statuses_on_book_id"
     t.index ["user_id", "created_at"], name: "index_book_statuses_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_book_statuses_on_user_id"
@@ -42,6 +55,7 @@ ActiveRecord::Schema.define(version: 20190109010730) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "picture"
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
@@ -61,36 +75,14 @@ ActiveRecord::Schema.define(version: 20190109010730) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "favorite_books", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "book_id"
-    t.integer "status", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id", "created_at"], name: "index_favorite_books_on_book_id_and_created_at"
-    t.index ["book_id"], name: "index_favorite_books_on_book_id"
-    t.index ["user_id", "created_at"], name: "index_favorite_books_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_favorite_books_on_user_id"
-  end
-
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["activity_id", "user_id"], name: "index_likes_on_activity_id_and_user_id", unique: true
     t.index ["activity_id"], name: "index_likes_on_activity_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
-  create_table "rates", force: :cascade do |t|
-    t.integer "stars", default: 0, null: false
-    t.integer "user_id"
-    t.integer "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_rates_on_book_id"
-    t.index ["user_id", "book_id"], name: "index_rates_on_user_id_and_book_id"
-    t.index ["user_id"], name: "index_rates_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -106,6 +98,7 @@ ActiveRecord::Schema.define(version: 20190109010730) do
   create_table "reviews", force: :cascade do |t|
     t.text "title"
     t.text "content"
+    t.integer "stars"
     t.integer "user_id"
     t.integer "book_id"
     t.datetime "created_at", null: false

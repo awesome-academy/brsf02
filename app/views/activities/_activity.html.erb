@@ -1,0 +1,25 @@
+<%
+case activity.object_type
+when "Review"
+  action = t(".post.review")
+  object = link_to(activity.object.book.title, activity.object.book)
+  description = link_to activity.object.title, activity.object
+when "BookStatus"
+  action = t(".post.#{activity.object.status}")
+  object = link_to(activity.object.book.title, activity.object.book)
+  description = ""
+when "BookFavorite"
+  action = t ".post.favorite"
+  object = link_to(activity.object.book.title, activity.object.book)
+  description = ""
+when "Relationship"
+  if activity.user == activity.object.follower
+    action = t ".post.follow"
+    object = link_to(activity.object.followed.name, activity.object.followed)
+  else
+    action = t ".post.followed"
+    object = link_to(activity.object.follower.name, activity.object.follower)
+    description = ""
+  end
+end%>
+ <%= render "activities/box", {activity: activity, action: action, description: description, object: object} %>

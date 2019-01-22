@@ -1,11 +1,16 @@
 class User < ApplicationRecord
   before_save :downcase_email
   enum role: {user: 0, admin: 1}
-  has_many :favorite_books, dependent: :destroy
+  has_many :book_favorites, dependent: :destroy
   has_many :book_statuses, dependent: :destroy
+  has_many :reading_statuses, -> { where status: "reading" }, class_name: :BookStatus
+  has_many :reading_books, through: :reading_statuses, source: :book
+  has_many :as_read_statuses, -> { where status: "as_read"}, class_name: :BookStatus
+  has_many :as_read_books, through: :as_read_statuses, source: :book
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :liked_activities, through: :likes, source: :activity
   has_many :suggests, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :active_relationships, class_name:  Relationship.name,
@@ -14,7 +19,10 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name:  Relationship.name,
     foreign_key: :followed_id, dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :marked_books, through: :book_statuses, source: :book
+  has_many :favorite_books, through: :book_favorites, source: :book
   scope :newest, ->{order created_at: :desc}
+
   mount_uploader :avatar, AvatarUploader
   attr_accessor :remember_token
 
@@ -41,6 +49,25 @@ class User < ApplicationRecord
     BCrypt::Password.create string, cost: cost
   end
 
+  # Follows a user.
+  def follow(other_user)
+    following << other_user
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+  def liked?(activity)
+    liked_activities.include?(activity)
+  end
+
   # Returns a random token.
   def self.new_token
     SecureRandom.urlsafe_base64
@@ -61,9 +88,16 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password? token
   end
 
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+      WHERE  follower_id = :user_id"
+    Activity.where("user_id IN (#{following_ids})
+      OR user_id = :user_id", user_id: id)
+  end
+
   private
 
-  def downcase_email
-    email.downcase!
-  end
+    def downcase_email
+      email.downcase!
+    end
 end

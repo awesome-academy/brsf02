@@ -1,0 +1,8 @@
+<% @book_status = BookStatus.new %>
+$(".book_<%= @book.id %>").find(".book_status").attr('status', 'unread');
+$(".book_<%= @book.id %>").find(".book_status").html('unread');
+$(".status-form-<%= @book.id %>").html("<%= escape_javascript(
+  render("books/status_button_form", {book: @book, status: "reading"}) +
+  (render("books/status_button_form", {book: @book, status: "as_read"}))
+          ) %>");
+$(".status-<%= @book.id %>").html("<span class='badge unread'>unread</span>");

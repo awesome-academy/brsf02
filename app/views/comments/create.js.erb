@@ -1,0 +1,3 @@
+$(".activity-comment-<%= @comment.parent_id %>").find(".comments-list").prepend("<%= escape_javascript( render @comment )%>");
+$(".activity-comment-<%= @comment.parent_id %>").find("#comment_content").val('');
+$(".activity-count-<%= @comment.parent_id %>").find(".comment_count").html(" <%= pluralize(@comment.parent_activity.comments.count, t('model.comment.comment')) %>");

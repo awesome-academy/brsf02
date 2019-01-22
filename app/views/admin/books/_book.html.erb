@@ -1,0 +1,10 @@
+<tr>
+  <td><%= book.id %></td>
+  <td><%= book.title %></td>
+  <td class="text-center">
+    <%= link_to t(".edit"), edit_admin_book_path(book),
+        class: "btn btn-xs btn-primary" %>
+    <%= link_to t(".delete"), admin_book_path(book), method: :delete,
+        data: {confirm: t(".confirm")}, class: "btn btn-xs btn-danger" %>
+  </td>
+</tr>

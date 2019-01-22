@@ -1,0 +1,5 @@
+<% if current_user.liked?(activity) %>
+  <%= render "likes/unlike", activity: activity %>
+<% else %>
+  <%= render "likes/like", activity: activity %>
+<% end %>

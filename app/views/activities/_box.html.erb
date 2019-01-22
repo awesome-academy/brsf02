@@ -1,0 +1,43 @@
+<div id="activity_box_<%= activity.id %>">
+  <div class="panel panel-white post panel-shadow">
+    <div class="post-heading">
+      <div class="pull-left image">
+        <img src= <%= activity.user.avatar.url %>
+        class="img-circle avatar" alt="user profile image">
+      </div>
+      <div class="pull-left meta">
+        <div class="title h5">
+          <a href="#"><b><%= activity.user.name %></b></a>
+          <%= action %><%= object %>
+        </div>
+        <h6 class="text-muted time"><%= activity.created_at %></h6>
+      </div>
+    </div>
+    <div class="post-description">
+      <p><%= description %></p>
+      <div class="stats activity-count-<%= activity.id %>">
+        <div class="row">
+        <div class="like_button" id="like-<%= activity.id %>">
+          <%= render "likes/form", activity: activity %>
+        </div>
+        <div class="btn btn-primary stat-item">
+          <i class="fa fa-comment icon"></i>
+          <span class="comment_count"><%= pluralize(activity.comments.count, t(".comment")) %></span>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class= '<%= "post-footer activity-comment-#{activity.id}" %>'>
+        <%= form_for(Comment.new, class: "input-group", remote: true) do |f| %>
+          <%= hidden_field_tag "comment[parent_id]", activity.id %>
+          <%= f.text_field :content, class: "form-control",:required => true %>
+          <span><%= button_tag(:submit, class: "form-control comment-form btn-success")  do %>
+          <i class='glyphicon glyphicon-comment'></i>
+          <% end %></span>
+        <% end %>
+        <ul class="comments-list">
+        <%= render activity.comments %>
+        </ul>
+    </div>
+  </div>
+</div>

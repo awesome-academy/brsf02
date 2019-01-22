@@ -1,0 +1,6 @@
+<%= form_for(current_user.likes.new, remote: true) do |f| %>
+   <div><%= hidden_field_tag :activity_id, activity.id %></div>
+  <%= button_tag(:submit, {class: "btn btn-primary"}) do %>
+  <i class="fa fa-thumbs-up icon"></i><%= pluralize(activity.likes.count, t(".like")) %>
+  <% end %>
+<% end %>

@@ -1,0 +1,60 @@
+<div class="row">
+  <!-- Post Content Column -->
+  <div class="col-lg-9">
+    <!-- Title -->
+    <h1 class="mt-4"><%= @review.title %></h1>
+    <!-- Author -->
+    <p class="lead">
+      <%= t "dictionary.by" %>
+      <a href="<%= user_path(@user) %>"><%= @user.name %></a>
+    </p>
+    <hr>
+    <!-- Date/Time -->
+    <p><%= @review.created_at %></p>
+    <!-- Post Content -->
+    <p><%= @review.content %></p>
+    <div class="post">
+      <div class= '<%= "post-footer activity-comment-#{@activity.id}" %>'>
+        <div class="stats activity-count-<%= @activity.id %>">
+          <div class="row">
+            <div class="like_button" id="like-<%= @activity.id %>">
+              <%= render "likes/form", activity: @activity %>
+            </div>
+            <div class="btn btn-primary stat-item">
+              <i class="fa fa-comment icon"></i><span class="comment_count"> <%= pluralize(@comments.count, t("model.comment.comment")) %></span>
+            </div>
+          </div>
+        </div>
+        <%= form_for(Comment.new, class: "input-group", remote: true) do |f| %>
+          <%= hidden_field_tag "comment[parent_id]", @activity.id %>
+          <h4><%= t ".leave_a_comment" %></h4>
+          <%= f.text_field :content, class: "form-control",:required => true %>
+          <span>
+            <%= button_tag(:submit, class: "form-control comment-form btn-success")  do %>
+              <i class='glyphicon glyphicon-comment'></i>
+            <% end %>
+          </span>
+        <% end %>
+        <ul class="comments-list">
+          <%= render @comments %>
+          <%= will_paginate(@comments) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<!-- /.row -->
+  <div class="col-md-3">
+    <div class="card" style="width:100%">
+      <img class="card-img-top" src="<%= @review.book.picture.url%>" alt="Card image"  style="width:100%">
+      <div class="card-body">
+        <a href="<%= book_path(@review.book) %>"><h4 class="card-title"><%= @review.book.title%></h4></a>
+        <ul class="list-inline" id="courses">
+          <li class="list-inline-item">
+            <i class="fa fa-user"></i> <%= @review.book.author %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  <%= render "comments/edit_form" %>

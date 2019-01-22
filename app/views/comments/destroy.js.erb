@@ -1,0 +1,3 @@
+$("#comment-<%= params[:id] %>").remove();
+$(".activity-count-<%= @parent_activity_id %>").find(".comment_count").html(" <%= pluralize(Activity.find_by(id: @parent_activity_id).comments.count , t('model.comment.comment')) %>");
+$('#modal-edit-comment').modal('hide');

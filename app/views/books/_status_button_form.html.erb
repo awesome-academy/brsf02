@@ -1,0 +1,13 @@
+<li>
+  <%= form_for(@book_status, remote: true, :html =>{"data-tip"=>t(".mark_as_#{status}")}) do |f| %>
+    <div><%= hidden_field_tag "book_status[book_id]", book.id %></div>
+    <div><%= hidden_field_tag "book_status[status]", status %></div>
+    <%= button_tag(:submit, {class: "btna"}) do %>
+      <% if status == "reading" %>
+        <i class="fa fa-book"></i>
+        <% elsif status == "as_read" %>
+        <i class="fa fa-check"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</li>

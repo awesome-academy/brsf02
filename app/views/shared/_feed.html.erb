@@ -1,0 +1,6 @@
+<% if @activities.any? %>
+  <%= render @activities %>
+  <%= will_paginate @activities %>
+<% else %>
+  <%= t (".no_activities") %>
+<% end %>

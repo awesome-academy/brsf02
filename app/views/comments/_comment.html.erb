@@ -1,0 +1,15 @@
+<li class="comment" id="comment-<%= comment.id %>">
+  <a class="pull-left" href= <%= user_path(comment.user)%>>
+    <img class="avatar" src= <%= comment.user.avatar.url %> alt='<%= comment.user.name %>'>
+  </a>
+  <div class="comment-body">
+    <div class="comment-heading">
+      <a href= <%= user_path(comment.user)%> ><h4 class="user"><%= comment.user.name %></h4></a>
+      <h5 class="time"><%= comment.created_at %></h5>
+      <% if current_user == comment.user %>
+        <button class="btn btn-primary btn-xs pull-right" onclick="edit_comment(this)" data-comment-id= "<%= comment.id %>" data-toggle="modal" data-target="#modal-edit-comment" data-content="<%= comment.content %>"><%= t ".edit_comment" %></button>
+      <% end %>
+    </div>
+    <p id="content-p"><%= comment.content %></p>
+  </div>
+</li>

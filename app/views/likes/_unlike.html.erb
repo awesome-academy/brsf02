@@ -1,0 +1,5 @@
+<%= form_for(current_user.likes.find_by(activity_id: activity.id),html: { method: :delete }, remote: true) do |f| %>
+  <%= button_tag(:submit, {class: "btn btn-primary active"}) do %>
+  <i class="fa fa-thumbs-up icon"></i><%= pluralize(activity.likes.count, t(".like")) %>
+  <% end %>
+<% end %>
